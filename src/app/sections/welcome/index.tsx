@@ -14,7 +14,7 @@ export const Welcome = () => {
         <h3>Links</h3>
         <div className={s.box}>
           <p>
-            📝 You can find some utils on our gists notion.&nbsp;
+            📝 You can finddddddd some utils on our gists notion.&nbsp;
             <a
               target="_blank"
               href="https://basementstudio.notion.site/09383099eb9d415b952af95d5e6a82cc?v=a5d4e739a25a4c3193d7f16e87bdf94e"

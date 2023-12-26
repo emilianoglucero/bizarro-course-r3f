@@ -12,9 +12,13 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint && stylelint '**/*.{css,scss}'",
-    "tsc": "tsc --pretty --noEmit"
+    "tsc": "tsc --pretty --noEmit",
+    "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@prismicio/client": "^7.3.1",
+    "@prismicio/next": "^1.5.0",
+    "@prismicio/react": "^2.7.3",
     "@tanstack/react-query": "^4.32.0",
     "clsx": "1.1.1",
     "hls.js": "1.1.5",
@@ -30,6 +34,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.2",
     "@next/eslint-plugin-next": "^13.0.2",
+    "@slicemachine/adapter-next": "^0.3.31",
     "@total-typescript/ts-reset": "^0.4.2",
     "@types/css-font-loading-module": "0.0.7",
     "@types/mousetrap": "1.6.9",
@@ -53,6 +58,7 @@
     "next-transpile-modules": "^9.0.0",
     "prettier": "2.5.1",
     "sass": "1.49.9",
+    "slice-machine-ui": "^1.22.1",
     "stylelint": "14.5.3",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^23.0.0",

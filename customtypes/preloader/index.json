@@ -1,0 +1,18 @@
+{
+  "id": "preloader",
+  "label": "Preloader",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

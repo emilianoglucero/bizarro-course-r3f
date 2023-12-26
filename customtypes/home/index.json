@@ -1,0 +1,25 @@
+{
+  "id": "home",
+  "label": "Home",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "collection": {
+        "type": "Text",
+        "config": {
+          "label": "Collection",
+          "placeholder": ""
+        }
+      },
+      "button": {
+        "type": "Text",
+        "config": {
+          "label": "Button",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

@@ -145,6 +145,206 @@ export type CollectionDocument<Lang extends string = string> =
   >
 
 /**
+ * Item in *Detail → Highlight*
+ */
+export interface DetailDocumentDataHighlightItem {
+  /**
+   * Icon field in *Detail → Highlight*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Arrow
+   * - **API ID Path**: detail.highlight[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<'Arrow' | 'Star', 'filled'>
+
+  /**
+   * Text field in *Detail → Highlight*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.highlight[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField
+}
+
+/**
+ * Item in *Detail → Information*
+ */
+export interface DetailDocumentDataInformationItem {
+  /**
+   * Label field in *Detail → Information*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.information[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Description field in *Detail → Information*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.information[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+}
+
+type DetailDocumentDataSlicesSlice = never
+
+/**
+ * Content for Detail documents
+ */
+interface DetailDocumentData {
+  /**
+   * Title field in *Detail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Collection field in *Detail*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.collection
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  collection: prismic.ContentRelationshipField<'collection'>
+
+  /**
+   * Product Image field in *Detail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.product_image_01
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  product_image_01: prismic.ImageField<never>
+
+  /**
+   * Product Image 2 field in *Detail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.product_image_02
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  product_image_02: prismic.ImageField<never>
+
+  /**
+   * Highlight field in *Detail*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.highlight[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  highlight: prismic.GroupField<Simplify<DetailDocumentDataHighlightItem>>
+
+  /**
+   * Information field in *Detail*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.information[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  information: prismic.GroupField<Simplify<DetailDocumentDataInformationItem>>
+
+  /**
+   * Shop it - Text field in *Detail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.link_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_text: prismic.KeyTextField
+
+  /**
+   * Shop it - Link field in *Detail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.link_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_url: prismic.KeyTextField
+
+  /**
+   * Slice Zone field in *Detail*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DetailDocumentDataSlicesSlice> /**
+   * Meta Description field in *Detail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: detail.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Detail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+
+  /**
+   * Meta Title field in *Detail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: detail.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+}
+
+/**
+ * Detail document from Prismic
+ *
+ * - **API ID**: `detail`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DetailDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<DetailDocumentData>, 'detail', Lang>
+
+/**
  * Content for Home documents
  */
 interface HomeDocumentData {
@@ -428,6 +628,7 @@ export type ProductDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | AboutDocument
   | CollectionDocument
+  | DetailDocument
   | HomeDocument
   | MetadataDocument
   | PreloaderDocument
@@ -677,6 +878,11 @@ declare module '@prismicio/client' {
       CollectionDocument,
       CollectionDocumentData,
       CollectionDocumentDataProductsItem,
+      DetailDocument,
+      DetailDocumentData,
+      DetailDocumentDataHighlightItem,
+      DetailDocumentDataInformationItem,
+      DetailDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       MetadataDocument,

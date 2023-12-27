@@ -1,0 +1,142 @@
+{
+  "id": "detail",
+  "label": "Detail",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "collection": {
+        "type": "Link",
+        "config": {
+          "label": "Collection",
+          "select": "document",
+          "customtypes": ["collection"]
+        }
+      },
+      "product_image_01": {
+        "type": "Image",
+        "config": {
+          "label": "Product Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "product_image_02": {
+        "type": "Image",
+        "config": {
+          "label": "Product Image 2",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "highlight": {
+        "type": "Group",
+        "config": {
+          "label": "Highlight",
+          "fields": {
+            "icon": {
+              "type": "Select",
+              "config": {
+                "label": "Icon",
+                "placeholder": "",
+                "options": ["Arrow", "Star"],
+                "default_value": "Arrow"
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "information": {
+        "type": "Group",
+        "config": {
+          "label": "Information",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Description",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "link_text": {
+        "type": "Text",
+        "config": {
+          "label": "Shop it - Text",
+          "placeholder": ""
+        }
+      },
+      "link_url": {
+        "type": "Text",
+        "config": {
+          "label": "Shop it - Link",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

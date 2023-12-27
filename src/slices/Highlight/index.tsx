@@ -1,4 +1,5 @@
 import { Content } from '@prismicio/client'
+import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
 
 /**
@@ -15,7 +16,13 @@ const Highlight = ({ slice }: HighlightProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for highlight (variation: {slice.variation}) Slices
+      <p>{slice.primary.label}</p>
+      <h3>{slice.primary.title}</h3>
+      {slice.items.map((item, index) => (
+        <div key={index}>
+          <PrismicNextImage field={item.media} />
+        </div>
+      ))}
     </section>
   )
 }

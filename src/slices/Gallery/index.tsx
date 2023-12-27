@@ -1,4 +1,5 @@
 import { Content } from '@prismicio/client'
+import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
 
 /**
@@ -15,7 +16,11 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for gallery (variation: {slice.variation}) Slices
+      {slice.items.map((item, index) => (
+        <div key={index}>
+          <PrismicNextImage field={item.image} />
+        </div>
+      ))}
     </section>
   )
 }

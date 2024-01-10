@@ -24,6 +24,10 @@ const routes: prismic.ClientConfig['routes'] = [
   {
     type: 'detail',
     path: '/detail/:uid'
+  },
+  {
+    type: 'collections',
+    path: '/collections'
   }
 ]
 

@@ -1,6 +1,7 @@
 import { Content } from '@prismicio/client'
-import { SliceComponentProps } from '@prismicio/react'
+import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 
+import style from './title.module.scss'
 /**
  * Props for `Title`.
  */
@@ -11,12 +12,9 @@ export type TitleProps = SliceComponentProps<Content.TitleSlice>
  */
 const Title = ({ slice }: TitleProps): JSX.Element => {
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for title (variation: {slice.variation}) Slices
-    </section>
+    <div className={style.title}>
+      <PrismicRichText field={slice.primary.title} />
+    </div>
   )
 }
 

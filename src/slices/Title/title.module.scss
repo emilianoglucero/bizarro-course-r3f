@@ -1,0 +1,9 @@
+@import '../../css/shared/titles';
+
+.title {
+  @extend %title-100;
+
+  margin: auto;
+  max-width: 128rem;
+  text-align: center;
+}

@@ -1,0 +1,52 @@
+@import '../../css/shared/descriptions';
+@import '../../css/shared/titles';
+@import '../../css/utils/variables';
+
+.about {
+  background: $color-cadet-blue;
+
+  /* Target the 3rd child of .about */
+  [class*='content']:nth-child(3) {
+    [class*='content__wrapper'] {
+      [class*='media'] {
+        height: 80.8rem;
+        margin-left: 18rem;
+        position: relative;
+        width: 53.8rem;
+      }
+    }
+  }
+
+  /* Target the 5th child of .about */
+  [class*='content']:nth-child(5) {
+    [class*='content__wrapper'] {
+      [class*='media'] {
+        height: 60rem;
+        width: 96rem;
+        margin-left: 18rem;
+      }
+    }
+  }
+
+  /* Target the 8th child of .about */
+  [class*='content']:nth-child(8) {
+    [class*='content__wrapper'] {
+      [class*='media'] {
+        height: 52rem;
+        margin-right: 12rem;
+        width: 84.2rem;
+      }
+    }
+  }
+
+  /* Target the 9th child of .about */
+  [class*='content']:nth-child(9) {
+    [class*='content__wrapper'] {
+      [class*='media'] {
+        height: 85.8rem;
+        margin-left: 18rem;
+        width: 60.8rem;
+      }
+    }
+  }
+}

@@ -6,5 +6,6 @@ export const components = {
   content: dynamic(() => import('./Content')),
   gallery: dynamic(() => import('./Gallery')),
   highlight: dynamic(() => import('./Highlight')),
+  preloader: dynamic(() => import('./Preloader')),
   title: dynamic(() => import('./Title'))
 }

@@ -1,0 +1,60 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Excepteur reprehenderit id ut reprehenderit nostrud occaecat."
+						}
+					}
+				]
+			},
+			"preloader_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "The surprise of what is possible",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "to make with a simple ",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "and thin thread.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"secondary_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do officia do ea sit esse tempor sunt ipsum culpa ut dolor nulla ea."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

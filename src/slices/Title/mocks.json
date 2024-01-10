@@ -4,9 +4,15 @@
 		"variation": "default",
 		"primary": {
 			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "modern",
-				"type": "Text"
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Reprehenderit magna cupidatat in ullamco labore proident in. Commodo veniam sint mollit cillum."
+						}
+					}
+				]
 			}
 		},
 		"items": []

@@ -1,5 +1,6 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')
 const withTM = require('next-transpile-modules')
+const path = require('path')
 
 /**
  * @type {import('next').NextConfig}
@@ -10,7 +11,10 @@ const config = {
   images: {
     formats: ['image/avif', 'image/webp']
   },
-  experimental: {}
+  experimental: {},
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')]
+  }
 }
 
 module.exports = (_phase, { defaultConfig: _ }) => {

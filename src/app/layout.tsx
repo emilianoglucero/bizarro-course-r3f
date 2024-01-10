@@ -1,16 +1,14 @@
 import '~/css/global.scss'
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 
-import { Header } from '~/components/header'
 import { createClient } from '~/prismicio'
 
+import Navigation from '../components/navigation'
+import { georgeX, suisseBP } from '../css/fonts'
 // import { siteURL } from '~/lib/constants'
 import { AppHooks } from './app-hooks'
 import { Providers } from './providers'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
@@ -52,9 +50,13 @@ export async function generateMetadata(): Promise<Metadata> {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body style={{ opacity: 0 }} className={inter.variable}>
+      <body
+        style={{ opacity: 0 }}
+        className={`${georgeX.className} ${suisseBP.className}`}
+      >
         <Providers>
-          <Header />
+          {/* <Header /> */}
+          <Navigation />
           {children}
           <AppHooks />
         </Providers>

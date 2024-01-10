@@ -4,53 +4,16 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-/**
- * Item in *About → Gallery*
- */
-export interface AboutDocumentDataGalleryItem {
-  /**
-   * Image field in *About → Gallery*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.gallery[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>
-}
-
 type AboutDocumentDataSlicesSlice =
-  | HighlightSlice
-  | GallerySlice
   | TitleSlice
+  | HighlightSlice
   | ContentSlice
+  | GallerySlice
 
 /**
  * Content for About documents
  */
 interface AboutDocumentData {
-  /**
-   * Gallery field in *About*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.gallery[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  gallery: prismic.GroupField<Simplify<AboutDocumentDataGalleryItem>>
-
-  /**
-   * Title field in *About*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField
-
   /**
    * Slice Zone field in *About*
    *
@@ -60,7 +23,38 @@ interface AboutDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice>
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+   * Meta Description field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: about.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+
+  /**
+   * Meta Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: about.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
 }
 
 /**
@@ -87,7 +81,7 @@ export interface CollectionDocumentDataProductsItem {
    * - **API ID Path**: collection.products[].product
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  product: prismic.ContentRelationshipField
+  product: prismic.ContentRelationshipField<'detail'>
 }
 
 /**
@@ -145,6 +139,110 @@ export type CollectionDocument<Lang extends string = string> =
   >
 
 /**
+ * Item in *Collections → Products*
+ */
+export interface CollectionsDocumentDataProductsGroupItem {
+  /**
+   * Collection field in *Collections → Products*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collections.products_group[].collection
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  collection: prismic.ContentRelationshipField<'collection'>
+}
+
+type CollectionsDocumentDataSlicesSlice = PreloaderSlice
+
+/**
+ * Content for Collections documents
+ */
+interface CollectionsDocumentData {
+  /**
+   * Title field in *Collections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collections.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Products field in *Collections*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collections.products_group[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  products_group: prismic.GroupField<
+    Simplify<CollectionsDocumentDataProductsGroupItem>
+  >
+
+  /**
+   * Slice Zone field in *Collections*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collections.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CollectionsDocumentDataSlicesSlice> /**
+   * Meta Description field in *Collections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: collections.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Collections*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: collections.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+
+  /**
+   * Meta Title field in *Collections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: collections.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+}
+
+/**
+ * Collections document from Prismic
+ *
+ * - **API ID**: `collections`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CollectionsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CollectionsDocumentData>,
+    'collections',
+    Lang
+  >
+
+/**
  * Item in *Detail → Highlight*
  */
 export interface DetailDocumentDataHighlightItem {
@@ -162,12 +260,12 @@ export interface DetailDocumentDataHighlightItem {
   /**
    * Text field in *Detail → Highlight*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: detail.highlight[].text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  text: prismic.KeyTextField
+  text: prismic.RichTextField
 }
 
 /**
@@ -177,22 +275,22 @@ export interface DetailDocumentDataInformationItem {
   /**
    * Label field in *Detail → Information*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: detail.information[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  label: prismic.KeyTextField
+  label: prismic.RichTextField
 
   /**
    * Description field in *Detail → Information*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: detail.information[].description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  description: prismic.KeyTextField
+  description: prismic.RichTextField
 }
 
 type DetailDocumentDataSlicesSlice = never
@@ -344,6 +442,8 @@ interface DetailDocumentData {
 export type DetailDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DetailDocumentData>, 'detail', Lang>
 
+type HomeDocumentDataSlicesSlice = GallerySlice | PreloaderSlice
+
 /**
  * Content for Home documents
  */
@@ -369,6 +469,17 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   button: prismic.KeyTextField
+
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>
 }
 
 /**
@@ -438,201 +549,81 @@ export type MetadataDocument<Lang extends string = string> =
   >
 
 /**
- * Content for Preloader documents
+ * Item in *Navigation → Nav Item*
  */
-interface PreloaderDocumentData {
+export interface NavigationDocumentDataNavItemItem {
   /**
-   * Title field in *Preloader*
+   * Link field in *Navigation → Nav Item*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: preloader.title
-   * - **Tab**: Main
+   * - **API ID Path**: navigation.nav_item[].link
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  title: prismic.KeyTextField
+  link: prismic.KeyTextField
+
+  /**
+   * Label field in *Navigation → Nav Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_item[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField
 }
 
 /**
- * Preloader document from Prismic
+ * Content for Navigation documents
+ */
+interface NavigationDocumentData {
+  /**
+   * Name field in *Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField
+
+  /**
+   * Nav Item field in *Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.nav_item[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  nav_item: prismic.GroupField<Simplify<NavigationDocumentDataNavItemItem>>
+}
+
+/**
+ * Navigation document from Prismic
  *
- * - **API ID**: `preloader`
+ * - **API ID**: `navigation`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type PreloaderDocument<Lang extends string = string> =
+export type NavigationDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<PreloaderDocumentData>,
-    'preloader',
+    Simplify<NavigationDocumentData>,
+    'navigation',
     Lang
   >
-
-/**
- * Item in *Product → Highlight*
- */
-export interface ProductDocumentDataHighlightItem {
-  /**
-   * Icon field in *Product → Highlight*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: Arrow
-   * - **API ID Path**: product.highlight[].icon
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  icon: prismic.SelectField<'Arrow' | 'Star', 'filled'>
-
-  /**
-   * Text field in *Product → Highlight*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.highlight[].text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  text: prismic.KeyTextField
-}
-
-/**
- * Item in *Product → Information*
- */
-export interface ProductDocumentDataInformationItem {
-  /**
-   * Label field in *Product → Information*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.information[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField
-
-  /**
-   * Description field in *Product → Information*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.information[].description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  description: prismic.KeyTextField
-}
-
-/**
- * Content for Product documents
- */
-interface ProductDocumentData {
-  /**
-   * Title field in *Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField
-
-  /**
-   * Colllection field in *Product*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.colllection
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  colllection: prismic.ContentRelationshipField<'collection'>
-
-  /**
-   * Product field in *Product*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.product
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  product: prismic.ImageField<never>
-
-  /**
-   * Product2 field in *Product*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.product2
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  product2: prismic.ImageField<never>
-
-  /**
-   * Highlight field in *Product*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.highlight[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  highlight: prismic.GroupField<Simplify<ProductDocumentDataHighlightItem>>
-
-  /**
-   * Information field in *Product*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.information[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  information: prismic.GroupField<Simplify<ProductDocumentDataInformationItem>>
-
-  /**
-   * Shop it - Text field in *Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.link_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  link_text: prismic.KeyTextField
-
-  /**
-   * Shop it - Link field in *Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product.link_url
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  link_url: prismic.KeyTextField
-}
-
-/**
- * Product document from Prismic
- *
- * - **API ID**: `product`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ProductDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<ProductDocumentData>, 'product', Lang>
 
 export type AllDocumentTypes =
   | AboutDocument
   | CollectionDocument
+  | CollectionsDocument
   | DetailDocument
   | HomeDocument
   | MetadataDocument
-  | PreloaderDocument
-  | ProductDocument
+  | NavigationDocument
 
 /**
  * Primary content in *Content → Primary*
@@ -820,18 +811,73 @@ export type HighlightSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *Preloader → Primary*
+ */
+export interface PreloaderSliceDefaultPrimary {
+  /**
+   * Text field in *Preloader → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: preloader.primary.preloader_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  preloader_text: prismic.RichTextField
+
+  /**
+   * Secondary text field in *Preloader → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: preloader.primary.secondary_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  secondary_text: prismic.RichTextField
+}
+
+/**
+ * Default variation for Preloader Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PreloaderSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<PreloaderSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *Preloader*
+ */
+type PreloaderSliceVariation = PreloaderSliceDefault
+
+/**
+ * Preloader Shared Slice
+ *
+ * - **API ID**: `preloader`
+ * - **Description**: Preloader
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PreloaderSlice = prismic.SharedSlice<
+  'preloader',
+  PreloaderSliceVariation
+>
+
+/**
  * Primary content in *Title → Primary*
  */
 export interface TitleSliceDefaultPrimary {
   /**
    * Title field in *Title → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: title.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  title: prismic.KeyTextField
+  title: prismic.RichTextField
 }
 
 /**
@@ -873,11 +919,14 @@ declare module '@prismicio/client' {
     export type {
       AboutDocument,
       AboutDocumentData,
-      AboutDocumentDataGalleryItem,
       AboutDocumentDataSlicesSlice,
       CollectionDocument,
       CollectionDocumentData,
       CollectionDocumentDataProductsItem,
+      CollectionsDocument,
+      CollectionsDocumentData,
+      CollectionsDocumentDataProductsGroupItem,
+      CollectionsDocumentDataSlicesSlice,
       DetailDocument,
       DetailDocumentData,
       DetailDocumentDataHighlightItem,
@@ -885,14 +934,12 @@ declare module '@prismicio/client' {
       DetailDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
+      HomeDocumentDataSlicesSlice,
       MetadataDocument,
       MetadataDocumentData,
-      PreloaderDocument,
-      PreloaderDocumentData,
-      ProductDocument,
-      ProductDocumentData,
-      ProductDocumentDataHighlightItem,
-      ProductDocumentDataInformationItem,
+      NavigationDocument,
+      NavigationDocumentData,
+      NavigationDocumentDataNavItemItem,
       AllDocumentTypes,
       ContentSlice,
       ContentSliceDefaultPrimary,
@@ -907,6 +954,10 @@ declare module '@prismicio/client' {
       HighlightSliceDefaultItem,
       HighlightSliceVariation,
       HighlightSliceDefault,
+      PreloaderSlice,
+      PreloaderSliceDefaultPrimary,
+      PreloaderSliceVariation,
+      PreloaderSliceDefault,
       TitleSlice,
       TitleSliceDefaultPrimary,
       TitleSliceVariation,

@@ -1,7 +1,7 @@
 {
   "id": "home",
   "label": "Home",
-  "format": "custom",
+  "format": "page",
   "repeatable": false,
   "status": true,
   "json": {
@@ -18,6 +18,20 @@
         "config": {
           "label": "Button",
           "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "gallery": {
+              "type": "SharedSlice"
+            },
+            "preloader": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

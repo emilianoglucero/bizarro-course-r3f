@@ -35,7 +35,8 @@
               "type": "Link",
               "config": {
                 "label": "Product",
-                "select": "document"
+                "select": "document",
+                "customtypes": ["detail"]
               }
             }
           }

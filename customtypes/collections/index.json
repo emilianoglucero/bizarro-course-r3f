@@ -1,26 +1,40 @@
 {
-  "id": "about",
-  "label": "About",
+  "id": "collections",
+  "label": "Collections",
   "format": "page",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "products_group": {
+        "type": "Group",
+        "config": {
+          "label": "Products",
+          "fields": {
+            "collection": {
+              "type": "Link",
+              "config": {
+                "label": "Collection",
+                "select": "document",
+                "customtypes": ["collection"]
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "title": {
-              "type": "SharedSlice"
-            },
-            "highlight": {
-              "type": "SharedSlice"
-            },
-            "content": {
-              "type": "SharedSlice"
-            },
-            "gallery": {
+            "preloader": {
               "type": "SharedSlice"
             }
           }

@@ -1,0 +1,8 @@
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return lengtth($z-indexes) - index($z-indexes, $name) + 1;
+  } @else {
+    @warn "There's no item `#{$name}` in this list; Choose one of these: #{$z-indexes}.";
+    @return null;
+  }
+}

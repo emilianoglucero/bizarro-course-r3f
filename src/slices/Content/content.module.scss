@@ -1,0 +1,65 @@
+@import '../../css/shared/descriptions';
+@import '../../css/utils/mixins';
+
+.content {
+  display: flex;
+  justify-content: center;
+  margin: 20rem auto;
+  position: relative;
+  //   width: 125.8rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:nth-child(5) {
+    justify-content: flex-end;
+  }
+
+  &:nth-child(8) {
+    justify-content: flex-start;
+  }
+
+  font-size: 1.6rem;
+}
+
+.content__wrapper {
+  display: flex;
+
+  &.content__right {
+    flex-direction: row-reverse;
+  }
+}
+
+.content__box {
+  display: flex;
+}
+
+.label {
+  @extend %description-12;
+
+  width: 18rem;
+  text-transform: uppercase;
+}
+
+.description {
+  width: 36.2rem;
+
+  p:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+
+.media {
+  position: relative;
+}
+
+.media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
